@@ -313,11 +313,11 @@ export function parseDeepLink(deepLinkUrl: string, asServer = false): DeepLinkWi
                 }
             }
 
-            const permalinkMatch = matchPermalinkDeeplink(url);
-            if (permalinkMatch && isValidTeamName(permalinkMatch.params.teamName) && isValidPostId(permalinkMatch.params.postId)) {
-                const {params: {serverUrl, teamName, postId}} = permalinkMatch;
-                return {type: DeepLink.Permalink, url: deepLinkUrl, data: {serverUrl: serverUrl.join('/'), teamName, postId}};
-            }
+        const permalinkMatch = matchPermalinkDeeplink(url);
+        if (permalinkMatch && isValidTeamName(permalinkMatch.params.teamName) && isValidId(permalinkMatch.params.postId)) {
+            const {params: {serverUrl, teamName, postId}} = permalinkMatch;
+            return {type: DeepLink.Permalink, url: deepLinkUrl, data: {serverUrl: serverUrl.join('/'), teamName, postId}};
+        }
         }
         
         const parsedUrl = urlParse(deepLinkUrl);
