@@ -528,7 +528,7 @@ export const convertProfileAttributesToCustomAttributes = (
         fieldsMap.set(field.id, {
             name: field.name,
             type: customType,
-            sort_order: field.attrs?.sort_order || Number.MAX_SAFE_INTEGER,
+            sort_order: field.attrs?.sort_order ?? Number.MAX_SAFE_INTEGER,
             originalField: field,
         });
 
@@ -556,7 +556,7 @@ export const convertProfileAttributesToCustomAttributes = (
             name: field?.name || attr.fieldId,
             type: field?.type || 'text',
             value: displayValue,
-            sort_order: field?.sort_order || Number.MAX_SAFE_INTEGER,
+            sort_order: field?.sort_order ?? Number.MAX_SAFE_INTEGER,
         });
     });
 
@@ -705,4 +705,8 @@ export const convertValueFromServer = (value: string | string[], fieldType: stri
     }
 
     return String(value);
+};
+
+export const isCustomFieldSamlLinked = (customField?: CustomProfileFieldModel): boolean => {
+    return Boolean(customField?.attrs?.saml);
 };
